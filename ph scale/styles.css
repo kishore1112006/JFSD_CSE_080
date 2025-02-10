@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+}
+body{
+    background-color: (189, 225, 226);
+    margin: 10px;
+}
+header{
+    background-color:beige;
+    color: black;
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+    
+}
+
+.mainbox{
+    background-color: rgb(213, 129, 18);  
+    display: flex;
+    flex-direction: column;
+    margin: 20px 300px;
+  
+}
+.box1{
+    display: flex;
+    background-color: #1A00FF;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box2{
+    display: flex;
+    background-color: #0000FF;;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box3{
+    display: flex;
+    background-color: #003300;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box4{
+    display: flex;
+    background-color: #009900;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box5{
+    display: flex;
+    background-color: #00D900;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box6{
+    display: flex;
+    background-color: #00FF00;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box7{
+    display: flex;
+    background-color: #D9FF00;
+    color: black;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box8{
+    display: flex;
+    background-color: #FF9F00;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box9{
+    display: flex;
+    background-color: #FF8000;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box10{
+    display: flex;
+    background-color: #FF5500;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box11{
+    display: flex;
+    background-color: #FF2A00;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box12{
+    display: flex;
+    background-color: #d3992e;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box13{
+    display: flex;
+    background-color: #e13f12;
+    color: aliceblue;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box14{
+    display: flex;
+    background-color: #e16015;
+    color: black;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
+.box15{
+    display: flex;
+    background-color: #FF0000;
+    color: black;
+    margin: 1px;
+    padding: 10px 20px 0 20px;
+}
