@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="indexstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>portfolio</title>
+</head>
+<body>
+   
+
+    <nav id="nav-bar">
+        <ul id="nav-list">
+            <li><a href="#About">About</a></li>
+            <li><a href="#Work">Work</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="About">
+        <h1>Hey, I am Kishore</h1>
+        <p id="animated-text"></p>
+    </section>
+    
+    <script>
+        const textElement = document.getElementById("animated-text");
+        const texts = ["Web Developer", "Video Editor"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+    
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            textElement.innerHTML = currentText.substring(0, charIndex) + "<span class='cursor'>|</span>";
+    
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+    
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 1000); 
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+    
+            setTimeout(typeEffect, isDeleting ? 80 : 150);
+        }
+    
+        document.addEventListener("DOMContentLoaded", typeEffect);
+    </script>
+    
+    
+        <h2>These are some of my projects</h2>
+        <section id="Work">
+        
+        <div class="projects">
+            <a href="These are some of my projects/youtube clone/index.html"target="_blank"><img src="These are some of my projects/images/uimg.png" alt="quiz"></a>
+           <p>Youtube clone</p>
+        </div>
+        <div class="projects">
+            <a href="These are some of my projects/amazon clone/indes.html"target="_blank"><img src="These are some of my projects/images/amazon.png" alt="quiz"></a>
+           <p>Amazon clone</p>
+        </div>
+        <div class="projects">
+            <a href="These are some of my projects/landing page/index.html" target="_blank"><img src="These are some of my projects/images/landing.png" alt="landing"></a>
+            <p>Landing page</p>
+         </div>
+         <div class="projects">
+            <a href="These are some of my projects/documentation/index.html"target="_blank"><img src="These are some of my projects/images/doc.png" alt="doc"></a>
+            <p>Documentation page</p>
+        </div>
+        <div class="projects">
+            <a href="These are some of my projects/gallery/index.html"target="_blank"><img src="These are some of my projects/images/gallery.png" alt="piano"></a>
+            <p>Flexbox gallery</p>
+        </div>
+        <div class="projects">
+            <a href="These are some of my projects/card/card.html.html"target="_blank"><img src="These are some of my projects/images/card.png" alt="card"></a>
+            <p>Rummy card</p>
+        </div>
+        <div class="projects">
+            <a href="These are some of my projects/second page/registrationform/index.html" target="_blank"><img src="These are some of my projects/images/registration form.png" alt="landing"></a>
+            <p>Registration form</p>
+         </div>
+         <div class="projects">
+            <a href="These are some of my projects/second page/skyline/index.html"target="_blank"><img src="These are some of my projects/images/skyline.png" alt="doc"></a>
+            <p>Skyline</p>
+        </div>
+        <div class="projects">
+            <a href="These are some of my projects/cafe menu/index.html"target="_blank"><img src="These are some of my projects/images/cafe.png" alt="piano"></a>
+            <p>Cafe menu card</p>
+        </div>
+       
+       
+    </section>
+    <section id="Contact">
+        <h3>Let's work together...</h3>
+        <p>How do you take your coffee?</p>
+        <div class="handle">
+        <a href="https://github.com/kishore1112006/JFSD_CSE_080" target="_blank"><p  class="ha"> GitHub </p></a>
+        <a href="https://www.linkedin.com/in/kishore-m-161202255/" target="_blank"><p  class="ha"> Linkedin</p></a>
+        <a href="mailto:kishoremonisha3@gmail.com" target="_blank"><p  class="ha"> Send a mail</p></a>
+        <a href="tel:+9019866752"><p  class="ha">Call me</p></a>
+    </div>
+        <hr>
+    </section>
+    <footer>
+        <p>Created by ziksoly...</p>
+    </footer>
+    
+</body>
+</html>

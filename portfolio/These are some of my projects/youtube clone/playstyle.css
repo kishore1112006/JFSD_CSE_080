@@ -1,0 +1,248 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rowdies:wght@300;400;700&display=swap');
+
+
+body{
+    background-color: rgb(27, 27, 27);
+   
+}
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust as needed */
+    background-color: rgb(27, 27, 27);
+    color: white;
+    z-index: 1000;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+
+}
+.right-header{
+    display: flex;
+    justify-content: flex-start;
+    width: 20%;
+}
+i:hover{
+    background-color: grey;
+    border-radius: 20px;
+}
+.header-search{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+.header-icons{
+    display: flex;
+    justify-content: flex-end;
+    width: 20%;
+    
+}
+.material-icons{
+    color: rgb(245, 244, 244);
+    padding: 10px;
+}
+#ulogo{
+    margin: 5px 0 10px 15px; 
+    padding: 2px;
+    height: 40px;
+    width: 15%;
+}
+
+#hp{
+    position: relative;
+    top: 13px;
+    color: white;
+    font-size: 20px;
+}
+.header-search form{
+   
+    height: 35px;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    display: flex;
+}
+.header-search form button i{
+    color: black ;
+}
+.header-search input{
+    width: 500px;
+    padding: 10px;
+    margin: 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: none;
+    background-color: black;
+}
+.header-search form button{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    border: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.header-search>i{
+    margin-top: 8px;
+    padding: 10px;
+}
+
+
+
+
+.mainbody{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 5px;
+    margin-top: 50px;   
+}
+
+
+.playside{
+ 
+   padding-top: 10px;
+   
+}
+.iframe-container{
+    position: relative;
+    top: 0;
+    left: 40px;
+    
+}
+iframe{
+    border-radius: 2%;
+}
+.video__details{
+    position: relative;
+    top: 0;
+    left: 40px;
+    max-width: 800px;
+    color: rgb(212, 206, 206);
+}
+.videocaption{
+   padding: 10px;
+}
+.videocaption>h3{
+    color: white;
+    line-height: 18px;
+    font-size: 19px;
+    margin-bottom: 6px;
+
+}
+.channelinfo{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+
+.channelimg>img{
+    border-radius: 50%;
+    width: 40px;
+}
+.channelname{
+    position: relative;
+    left: 10px;
+}
+.channelname>a{
+    text-decoration: none;
+    color: white;
+}
+.channelsubs{
+    position: relative;
+    left: -37px;
+    top: 20px;
+}
+.channelsubs>span{
+    color: gray;
+}
+.subscribe_button{
+    height: 20px;
+}
+button:hover{
+    cursor: pointer;
+}
+.subscribe_button>button{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 16px;
+    padding: 6px;
+    position: relative;
+    border: none;
+}
+.responseflex{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.description{
+    background-color: rgb(43, 41, 41);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.description>p{
+    padding: 5px;
+}
+
+
+
+
+.suggestionside{
+    
+    display: flex;
+    flex-direction: column;
+}
+.videos_container{
+    max-width: 90%  ;
+    display: flex;
+    margin-top: 20px;
+}
+
+.video__thumbnail>img{
+    width: 200px;
+}
+.title{
+    position: relative;
+    left: -30px;
+}
+h3{
+    text-decoration: double;
+    font-size: 15px;
+    padding: 6px;
+}
+.name{
+    color: gray;
+    padding: 6px;
+    font-size: 15px;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.sp{
+   
+    position: relative;
+    top: 20px;
+    left: -52px;
+    width: 100px;
+    color: grey
+}

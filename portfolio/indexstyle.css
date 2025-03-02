@@ -1,0 +1,247 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+.jersey-15-regular {
+    font-family: "Jersey 15", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/* Navigation Bar */
+#nav-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 74px;
+    width: 100%;
+  
+    z-index: 999;
+    position: fixed;
+    top: 0;
+}
+
+#nav-list {
+    list-style-type: none;
+    display: flex;
+    gap: 40px;
+    padding: 0;
+}
+
+#nav-list li {
+    font-weight: 900;
+    font-size: 2.5rem;
+}
+
+#nav-list li a {
+    color: black;
+    transition: 0.3s;
+    padding: 10px 15px;
+}
+
+#nav-list li a:hover {
+    background-color: rgb(57, 79, 79);
+    color: rgb(251, 243, 243);
+    border-radius: 5px;
+   
+}
+
+/* navigation style ends */
+body {
+    background-image: url('these are some of my projects/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    animation: glitchEffect 2s infinite;
+}
+
+@keyframes glitchEffect {
+    0% { filter: hue-rotate(0deg) contrast(100%) brightness(100%); }
+    20% { filter: hue-rotate(20deg) contrast(110%) brightness(120%); }
+    40% { filter: hue-rotate(-20deg) contrast(90%) brightness(90%); }
+    60% { filter: hue-rotate(15deg) contrast(120%) brightness(110%); }
+    80% { filter: hue-rotate(-15deg) contrast(95%) brightness(95%); }
+    100% { filter: hue-rotate(0deg) contrast(100%) brightness(100%); }
+}
+/* Centering the text */
+#About {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+}
+
+/* Title */
+#About h1 {
+    font-size: 6.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Typing animation text */
+#animated-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff9900; /* Yellow-Orange */
+    font-family: "Poppins", sans-serif;
+}
+
+/* Cursor animation */
+.cursor {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #ff9900;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+#About>p{
+    font-size: 4em;
+    text-align: center;
+    color: rgb(177, 66, 66);
+}
+h2{
+    font-size: 4.5em;
+    text-decoration: underline;
+    text-align: center;
+   
+    color: rgb(234, 5, 5);
+    padding: 70px;
+}
+img {
+    position: relative;
+    margin-left: 25px;
+    margin-top: 20px;
+    width: 350px;
+    height: 300px;
+    
+    /* Border */
+    border: 3px solid #201f1f; /* White border for contrast */
+    border-radius: 10px; /* Smooth corners */
+
+    /* Shadow */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);  
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+/* Add a hover effect */
+img:hover {
+    transform: scale(1.08); /* Slight zoom */
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.7);
+    filter: brightness(1.2); /* Make the image slightly brighter */
+    border-color: rgb(255, 174, 0); /* Change border color on hover */
+}
+
+#Work{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    
+}
+.projects{
+   height: 400px; 
+   background-color: rgb(81, 75, 176);
+   border: 2px solid black;
+   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5); 
+   border-radius: 20px; 
+}
+.projects>p{
+    
+    position: relative;
+    top: 20px;
+    font-size: 3em;
+    padding: 8.5px;
+    text-align: center;
+    background-color: #3a3d40;
+    color: white;
+    border-radius: 20px; 
+}
+
+
+#btn{
+    padding: 20px;
+    width: 120px;
+    position: relative;
+    left: 600px;    
+    top: 70px;
+    font-size: 17px;
+    text-decoration: none;
+    color: white;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);  
+}
+#btn:hover{
+    background-color: rgb(229, 123, 123);
+    color: white;
+
+}
+#Contact{
+    margin-top: 200px;
+    padding: 200px 0 100px 0;
+    border-top: 2px solid black;
+    color: white;
+    background-color: #000;
+     background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
+}
+h3{
+    text-align: center;
+    font-size: 70px;
+    margin: 120px 90px 0 90px;
+}
+#Contact>p{
+    font-size: 25px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.handle{
+    margin-top: 50px;
+    margin-bottom: 60px;
+    text-decoration: none;
+    font-size: 20px;
+    width: 800px;
+    margin-left: 250px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.ha{
+    color: white;
+    font-size: 30px;
+}
+hr{
+    border: 4px solid rgb(125, 36, 36);
+}
+footer{
+    background-color: #000;
+     background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
+    color: white;
+    padding: 40px;
+    font-size: 20px;
+    text-align: right;
+    }
+
+      
