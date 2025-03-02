@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+  }
+#playing-cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px; 
+}
+body{
+    background-image: url("bg.png");
+    background-position: left  right;
+    background-attachment: fixed;
+    
+    
+}
+.card1{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 400px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);  
+}
+.card1:hover{
+    transform: scale(1.1);
+}
+.card2:hover{
+    transform: scale(1.1);
+}
+.card3:hover{
+    transform: scale(1.1);
+}
+.card4:hover{
+    transform: scale(1.1);
+}
+.card5:hover{
+    transform: scale(1.1);
+}
+
+.card2{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 400px;
+    background-color: aliceblue;
+    color: red;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+.card3{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 400px;
+    background-color: aliceblue;
+    color: red;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+.card4{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 400px;
+    background-color: aliceblue;
+    color: red;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+.card5{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 400px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    
+}
+
+h1{
+    font-size: 50px;
+    margin: 0 7px 
+}
+h2{
+    font-size: 40px;
+    margin: 0 9px; 
+}
+p{
+    font-size: 90px;
+}
+.rotate{
+    transform: rotate(180deg);
+}
+.left{
+    align-self: flex-start;  
+}
+
+
+.middle{
+    align-self: center;
+    flex-direction: column;
+}
+.right{
+    align-self: flex-end;
+}
+.heading{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 30px;
+    font-size: 70px;
+    
+    color: white;
+    
+}
