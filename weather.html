@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: url('https://static.vecteezy.com/system/resources/previews/007/773/672/non_2x/beautiful-blue-and-golden-sky-and-clouds-abstract-background-yellow-orange-clouds-on-sunset-sky-warm-weather-background-art-picture-of-sky-at-sunset-sunset-and-fluffy-clouds-for-inspiration-free-photo.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 360px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            color: white;
+            font-size: 24px;
+        }
+        input {
+            width: 85%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ff7b00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background-color: #ff4500;
+        }
+        .weather-info {
+            margin-top: 20px;
+            color: white;
+        }
+        .weather-info h3 {
+            font-size: 22px;
+        }
+        .weather-info p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .weather-info img {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Weather App</h2>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="getWeather()">Search</button>
+        <button onclick="getCurrentLocationWeather()">📍 Current Location</button>
+        <div class="weather-info" id="weatherInfo"></div>
+    </div>
+
+    <script>
+        const apiKey = '7b7a1040d673738861352b6b619c435e'; // Replace with your valid API key
+
+        async function getWeather() {
+            const city = document.getElementById('city').value.trim();
+            if (!city) {
+                document.getElementById('weatherInfo').innerHTML = '<p>Please enter a city name.</p>';
+                return;
+            }
+
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            fetchWeatherData(url);
+        }
+
+        async function getCurrentLocationWeather() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const { latitude, longitude } = position.coords;
+                    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+                    fetchWeatherData(url);
+                }, () => {
+                    document.getElementById('weatherInfo').innerHTML = '<p>Geolocation permission denied.</p>';
+                });
+            } else {
+                document.getElementById('weatherInfo').innerHTML = '<p>Geolocation is not supported by your browser.</p>';
+            }
+        }
+
+        async function fetchWeatherData(url) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.cod !== 200) {
+                    document.getElementById('weatherInfo').innerHTML = `<p>Error: ${data.message}</p>`;
+                    return;
+                }
+
+                document.getElementById('weatherInfo').innerHTML = `
+                    <h3>${data.name}, ${data.sys.country}</h3>
+                    <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Weather Icon">
+                    <p>🌡️ Temperature: ${data.main.temp}°C</p>
+                    <p>☁️ Weather: ${data.weather[0].description}</p>
+                    <p>💧 Humidity: ${data.main.humidity}%</p>
+                    <p>🌬️ Wind Speed: ${data.wind.speed} m/s</p>
+                `;
+            } catch (error) {
+                document.getElementById('weatherInfo').innerHTML = '<p>Error fetching data. Try again later.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
