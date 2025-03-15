@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="indexstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="first">
+        <!-- left side image starts -->
+        <div class="image-container">
+            <img src="images/left-img.png" id="left-img" alt="">
+        </div>
+        <!-- left side image ends -->
+
+        <!-- login starts -->
+        <div class="login-container">
+            <img src="images/au logo.jpg" id="logo" alt="" srcset="">
+            <div class="logpass">
+                <div class="input-container">
+                    <input type="text" id="loginId" placeholder=" " required>
+                    <label for="loginId">Login ID</label>
+                </div>
+            
+                <div class="input-container">
+                    <input type="password" id="password" placeholder=" " required>
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            
+
+        
+            <p><a href="forgot page/forgot-password.html">Forgot Password?</a></p>
+
+            <button onclick="validateLogin()">
+                login<i class="fa fa-sign-in-alt"></i>
+            </button>
+        </div>
+        <!-- login ends -->
+    </div>
+    
+    <script src="indexscript.js"></script>
+</body>
+</html>
