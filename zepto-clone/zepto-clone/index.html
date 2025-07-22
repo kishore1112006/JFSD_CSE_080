@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script type="module" src="index.js"></script>
+    <title>Zepto</title>
+</head>
+<body>
+    <!-- header starts-->
+    <nav class="nav-bar">
+        <div class="nav-inside">
+            <!-- logo starts -->
+        <div class="logo">
+            <a href="">
+                <img src="assets/navbar/zepto.svg" id="logo-img"alt="">
+            </a>
+        </div>
+        <!-- logo ends -->
+
+        <!-- toggle button starts -->
+        <div class="toggle-container" id="toggle-btn">
+            <div class="left-side">
+                <img src="assets/navbar/super-saver-active.svg" alt=""class="left-hidden">
+            </div>
+            <div class="right-side">
+                 <img src="assets/navbar/super-saver-inactive.svg" alt="" class="right-hidden">
+            </div>
+            <div class="toggle-circle">
+                 <span class="circle-content">₹</span>
+            </div>
+        </div>
+        <!-- toggle button ends -->
+
+        <!-- location starts -->
+        <div class="location-container">
+            <button class="location-btn" id="loc-open-dialog">
+                 <div class="location-info-wrapper">
+                    <span id="9min-info"></span>
+                    <span id="fetched-display">Select Location</span>
+                </div>
+                <i class="fas fa-chevron-down" style="margin-left: 6px;" id="chev-down"></i>
+            </button>
+        </div>
+
+        <dialog id="loc-dialog">
+            <h3>Your Location</h3>
+            <button id="close-dialog">X</button>
+            <i class="fas fa-search search-icon-for-loc"></i>
+            <div id="search-box">
+                <input type="text" id="searchInput-for-loc" placeholder="Search a new adress" />
+            </div>
+            
+
+            <div id="loc-scroll">
+                  <button id="get-loc"> Use My Current Location</button>
+                <img src="assets/navbar/location_permission_off.png" alt="">
+            </div>
+        </dialog>
+
+        
+    
+
+        <!-- location ends -->
+
+        <!-- search box starts -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search products..." />
+        </div>
+        <!-- search box ends -->
+
+        <!-- login container starts -->
+        <div class="login-container" id="login-open-dialog">
+            <span class="material-symbols-outlined">account_circle</span>
+            <span>Login</span>
+        </div>
+
+        <!-- Login Dialog -->
+        <dialog id="login-dialog">
+             <div style="display: flex; width: 100%; height: 100%;background-color: white;">
+                 <div class="left-login-dialog">
+                    <img src="assets/login/logo.svg" alt="Zepto Logo" id="left-login-zepto-logo"/>
+                    <h2 class="right-heading">Groceries delivered in 10 minutes</h2>
+                    <form onsubmit="event.preventDefault(); sendOTP();">
+                        <div class="phoneno-search">
+                            <input type="text" id="phone-number" placeholder="+91 Enter Phone Number" required />
+                            <button id="contbtn"type="submit">Continue</button>
+                            <h3>By continuing, you agree to our Terms of Service & Privacy Policy</h3>
+                        </div>
+                    </form>
+                </div>
+                <div class="right-login-dialog">
+                    <img src="assets/login/get-the-app-phone.webp"class="right-phone" alt="" />
+                    <h2>Order faster & easier every time</h2>
+                    <h3>with the Zepto App</h3>
+                    <img src="assets/login/download-play-store.svg" class="play-app"alt="Play Store" />
+                    <img src="assets/login/download-app-store.svg"class="play-app" alt="App Store" />
+                </div>
+             </div>
+               
+            
+        </dialog>
+
+        <!-- OTP Verification Dialog -->
+            <dialog id="login-dialog-two">
+                <div style="display: flex; width: 100%; height: 100%;background-color: white;">
+                    <div class="left-login-dialog">
+                        <h2 id="otp-verify-text">OTP Verification</h2>
+                        <p id="result" style=" font-weight: bold;"></p>
+                        <div id="otp-and-btn-cont">
+                            <input type="text" id="otp" placeholder="Enter OTP" required />
+                        <button id="verify"onclick="verifyOTP()">Verify OTP</button>
+                        </div>
+                        
+                    </div>
+                    <div class="right-login-dialog">
+                        <img src="assets/login/get-the-app-phone.webp" class="right-phone" alt="" />
+                        <h2>Order faster & easier every time</h2>
+                        <h3>with the Zepto App</h3>
+                        <img src="assets/login/download-play-store.svg" class="play-app" alt="Play Store" />
+                        <img src="assets/login/download-app-store.svg" class="play-app"alt="App Store" />
+                    </div>
+                </div>
+            </dialog>
+        <!-- Firebase SDKs -->
+            <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+        <!-- login container ends -->
+                
+
+        <!-- cart container starts -->
+         <div class="cart-container">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span>Cart</span>
+            <span id="cart-count">0</span>
+         </div>
+        <!-- cart container ends -->
+        </div>
+
+        <!-- suggestion part start -->
+         <div class="suggestion-container">
+            <div class="suggestion-items">
+                <button class="sug-btn" id="show-all-btn">
+                    <img src="assets/nav suggestion/alll.png" alt="">
+                    <span>All</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/cafe.png" alt="">
+                    <span>Cafe</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/home.png" alt="">
+                    <span>Home</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/toys.png" alt="">
+                    <span>Toys</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/fresh.png" alt="">
+                    <span>Fresh</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/electronics.png" alt="">
+                    <span>Electronics</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/mobiles.png" alt="">
+                    <span>Mobiles</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/beauty.png" alt="">
+                    <span>Beauty</span>
+                    <div class="active-line"></div>
+                </button>
+                <button class="sug-btn">
+                    <img src="assets/nav suggestion/fashion.png" alt="">
+                    <span>Fashions</span>
+                    <div class="active-line"></div>
+                </button>
+            </div>
+         </div>
+         
+        
+        <!-- suggestion part ends --> 
+     </nav>
+      <hr>
+    <!-- header ends -->
+
+    <!-- horizontal scroll starts -->
+     <div class="horizontal-container">
+        <div class="horizontal-items">
+            <div class="image-row"><img src="assets/horizontal scroll/031c2a24-d40f-4272-8c71-8a566252495e.png" alt="Item 1"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/0da227bf-f9c1-4688-b26a-8ee28dcdaa8e.png" alt="Item 2"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/1237afd6-40bf-4942-a266-25f23025e86c.png" alt="Item 3"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/20d9687b-58a4-4bf7-a561-99198b4d5ca1.png" alt="Item 4"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/227b70d5-d1cf-428b-a276-1392c5067eb3.png" alt="Item 5"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/2b267097-f22b-4269-be34-1ea534ced3d4.png" alt="Item 6"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/366e5b7d-2028-4935-b9f1-75bfa085c3d7.png" alt="Item 7"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/38047553-95f3-47c6-a1ff-4794e1227d3a.png" alt="Item 8"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/3b0ce887-3b38-4450-b7da-9da0ad8b799d.png" alt="Item 9"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/474e6e58-1894-4378-86f1-168cc7266d1a.png" alt="Item 10"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/498eea73-358c-42c1-b482-158e80669be9.png" alt="Item 11"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/59d2c0cc-e776-407c-9142-7e69898d9eab.png" alt="Item 12"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/6d26710a-1dd8-4d53-9884-33bbaebc4bf4.png" alt="Item 13"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/8d4d3977-5197-49d9-9867-8a670524e48b.png" alt="Item 14"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/8d4fb022-bae0-432d-92c8-2b12d97ee6cc.png" alt="Item 15"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/90b2faee-1461-465a-a8c6-8c84716dd7dc.png" alt="Item 16"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/91b5ee91-38a4-4654-93db-ba948f6265ea.png" alt="Item 17"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/9b88fff5-73f5-46fd-999f-1622db4203d7.png" alt="Item 18"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/a4d7f18e-3a58-4c85-b912-f15f0be533ab.png" alt="Item 19"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/ab241d87-da5b-4830-b38f-1a6cd30d0d41.png" alt="Item 20"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/acfa1279-d46b-408c-8f74-6fcd71bd89f9.png" alt="Item 21"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/b117aaf8-960c-43c2-83e8-76d6d238c510.png" alt="Item 22"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/b1909dfd-726c-412b-beb7-9553bc909363.png" alt="Item 23"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/b322b3db-e75e-45e5-a11d-7ee37561c426.png" alt="Item 24"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/b5cfc944-9611-4f08-b4f9-a071d07b1aad.png" alt="Item 25"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/bc5f6b57-fa3a-4a71-b498-7b8cb83323f9.png" alt="Item 26"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/c084c75c-82ca-497f-857c-5069c6723194.png" alt="Item 27"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/c42610fc-a94c-40f6-9e74-d30c4a1f5895.png" alt="Item 28"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/db346f5e-644f-426a-85af-92d707e086ac.png" alt="Item 29"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/dc4a299d-521f-4a64-8205-c5ba8e1d13e3.png" alt="Item 30"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/e4fe52ef-96d9-4289-afb1-1c1ca7efd85b.png" alt="Item 31"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/eb6fe22a-f8b8-4189-8d9a-deb32ff659c9.png" alt="Item 32"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/ec7b14c6-2640-4165-b3ae-68c09a249ae0.png" alt="Item 33"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/f078a8dc-a9b6-41a6-9c6f-721d4892b8ee.png" alt="Item 34"></div>
+            <div class="image-row"><img src="assets/horizontal scroll/f4371151-d6ed-42d6-9338-8f7391d03fec.png" alt="Item 35"></div>
+        </div>
+     </div>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- horizontal scroll ends -->
+
+
+    
+
+    
+  <!-- Products Grid -->
+<div id="product-list">
+  <div class="products-grid"></div>
+</div>
+
+  <div id="cafe">
+    
+    <div class="products-grid"></div>
+  </div>
+  <div id="home">
+   
+    <div class="products-grid"></div>
+  </div>
+    <div id="toys">
+       
+        <div class="products-grid"></div>
+    </div>
+    <div id="fresh">
+        
+        <div class="products-grid"></div>
+    </div>
+<div id="electronics">
+   
+    <div class="products-grid"></div>
+</div>
+<div id="mobiles">
+   
+    <div class="products-grid"></div>
+</div>
+<div id="beauty">
+   
+    <div class="products-grid"></div>
+</div>
+<div id="fashions">
+   
+    <div class="products-grid"></div>
+</div>
+
+  
+
+ <!-- reCAPTCHA and Result Message Container -->
+        <div id="recaptcha-container" style="display: none;"></div>
+   
+        <section class="how-it-works">
+  <h2>How it Works</h2>
+  <div class="steps">
+    <div class="step">
+      <img src="assets/section/place-order.svg" alt="Open App" />
+      <h3>Open the app</h3>
+      <p>Choose from over 7000 products across groceries, fresh fruits & veggies, meat, pet care, beauty items & more</p>
+    </div>
+    <div class="step">
+      <img src="assets/section/do-not-blink.svg" alt="Place Order" />
+      <h3>Place an order</h3>
+      <p>Add your favourite items to the cart & avail the best offers</p>
+    </div>
+    <div class="step">
+      <img src="assets/section/enjoy.svg" alt="Free Delivery" />
+      <h3>Get free delivery</h3>
+      <p>Experience lightning-fast speed & get all your items delivered in 10 minutes</p>
+    </div>
+  </div>
+</section>
+
+
+
+      <footer class="footer">
+  <div class="footer-sections">
+    <div class="footer-column">
+      <h4>Popular Searches</h4>
+      <p><strong>Products:</strong> Avocado | Strawberry | Pomegranate | Beetroot | Ash gourd | Bottle gourd | Lady finger | Potato | Lemon | Dalchini | Fennel seeds | Blueberry | Papaya | Dragon fruit | Mushroom | Lettuce</p>
+      <p><strong>Brands:</strong> Yakult | My Muse | Aashirvaad Atta | Too Yumm | Lays | Figaro Olive Oil | Nandini Milk | Amul | Mother Dairy Near Me | Fortune Oil | Superyou | Durex Condoms | Ferns and Petals</p>
+      <p><strong>Categories:</strong> Grocery | Cigarettes | Chips | Curd | Hukka flavour | Paan shop near me | Eggs price | Cheese slice | Fresh fruits | Fresh vegetables | Refined oil | Butter price | Paneer price</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Categories</h4>
+      <ul>
+        <li>Fruits & Vegetables</li>
+        <li>Atta, Rice, Oil & Dals</li>
+        <li>Masala & Dry Fruits</li>
+        <li>Sweet Cravings</li>
+        <li>Frozen Food & Ice Creams</li>
+        <li>Baby Food</li>
+        <li>Dairy, Bread & Eggs</li>
+        <li>Cold Drinks & Juices</li>
+        <li>Munchies</li>
+        <li>Meats, Fish & Eggs</li>
+        <li>Breakfast & Sauces</li>
+        <li>Tea, Coffee & More</li>
+        <li>Biscuits</li>
+        <li>Makeup & Beauty</li>
+        <li>Bath & Body</li>
+        <li>Cleaning Essentials</li>
+        <li>Home Needs</li>
+        <li>Electricals & Accessories</li>
+        <li>Hygiene & Grooming</li>
+        <li>Health & Baby Care</li>
+        <li>Homegrown Brands</li>
+        <li>Paan Corner</li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li>Home</li>
+        <li>Delivery Areas</li>
+        <li>Careers</li>
+        <li>Customer Support</li>
+        <li>Press</li>
+        <li>Mojo - a Zepto Blog</li>
+        <li>Privacy Policy</li>
+        <li>Terms of Use</li>
+        <li>Responsible Disclosure Policy</li>
+        <li>Sell on Zepto</li>
+        <li>Deliver with Zepto</li>
+        <li>Partner with Zepto</li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Download App</h4>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png" alt="Play Store" class="store-badge">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" class="store-badge">
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© Zepto Marketplace Private Limited</p>
+  </div>
+</footer>
+
+
+<div id="cart-panel" class="cart-panel">
+  <h2>Your Cart</h2>
+    <button id="cart-close-btn">✖</button>
+  <div id="cart-items"></div>
+  <div id="cart-summary" style="padding: 10px; border-top: 1px solid #ddd;">
+  <p style="font-weight: bold;">Total: ₹<span id="cart-total">0</span></p>
+  <button id="buy-btn" style="padding: 8px 16px; background: green; color: white; border: none; cursor: pointer;">
+    Proceed to Buy
+  </button>
+</div>
+
+</div>
+
+ <div id="chat-box" class="msg-container"></div>
+ <button id="bot-toggle-btn">💬</button>
+ <script>
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", () => {
+    const search = document.querySelector(".search-container");
+    const suggest = document.querySelector(".suggestion-container");
+
+    if (window.scrollY > lastScrollY) {
+      // Scrolling down - hide
+      search.classList.add("hidden-on-scroll");
+      suggest.classList.add("hidden-on-scroll");
+    } else {
+      // Scrolling up - show
+      search.classList.remove("hidden-on-scroll");
+      suggest.classList.remove("hidden-on-scroll");
+    }
+
+    lastScrollY = window.scrollY;
+  });
+</script>
+
+ <script src="script.js"></script>
+</body>
+</html>

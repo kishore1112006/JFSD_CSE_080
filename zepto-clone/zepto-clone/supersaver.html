@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script type="module" src="index.js"></script>
+    <title>Zepto</title>
+</head>
+<body>
+  <style>
+    
+@media screen and (max-width: 480px) {
+   body {
+    padding-top: 420px;
+     background-color: white;
+  }
+
+  .nav-bar{
+    background-color: white;
+    padding-bottom: 40px;
+    width: 100%;
+  }
+  .logo{
+    width: 100px;
+    margin-left: -30px;
+  }
+  .location-container{
+    position: relative;
+    top: 20px;
+    left: -300px;
+    height: 40px;
+    width: 300px;
+  }
+  #loc-dialog {
+    position: relative;
+    top: 50%;
+    left: 50%;
+  }
+  .search-container {
+    margin-top: 300px;
+    margin-left: -500px;
+    width: 290px;
+  }
+  .suggestion-container {
+    margin-top: 150px;
+    margin-left: -30px;
+    width: 480px;
+    padding: 5px;
+    border: none;
+ 
+  }
+  .suggestion-items {
+    gap:10px;
+  }
+
+  .sug-btn {
+    padding: 2px;
+  }
+  .sug-btn  span{
+    color: rebeccapurple;
+  }
+  .login-container,.cart-container{
+   position: relative;
+   left: -20px;
+  }
+  #login-dialog,#login-dialog-two {
+    position: relative;
+    top: 50%;
+    left: 50%;
+  }
+  hr{
+     border: none;
+     height: 2px;
+     background-color: #ccc;
+  margin: 0;
+  position: relative;
+  top: -80px;
+  }
+
+  .cart-panel{
+   position: absolute;
+  z-index: 999999999;
+   top: 90px;
+   left: 100px;
+  }
+
+  .horizontal-container {
+    margin-top: -70px;
+  }
+
+   .products-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+  }
+  .qty-controls,.add-cart-btn{
+    margin-left: -30px;
+    width: 70px;
+  }
+  .section-image{
+    width: 100%;
+    height: 100%;
+  }
+  .search-container,
+.suggestion-container {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hidden-on-scroll {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+ .msg-container {
+  position: relative;
+  top: 100px;
+  left: 70px;
+}
+}
+  </style>
+    <!-- header starts-->
+    <nav class="nav-bar">
+        <div class="nav-inside">
+            <!-- logo starts -->
+        <div class="logo">
+            <a href="">
+                <img src="assets/navbar/zepto.svg" id="logo-img"alt="">
+            </a>
+        </div>
+        <!-- logo ends -->
+
+        <!-- toggle button starts -->
+        <div class="toggle-container" id="toggle-btn">
+            <div class="left-side">
+                <img src="assets/navbar/super-saver-active.svg" alt=""class="left-hidden">
+            </div>
+            <div class="right-side">
+                 <img src="assets/navbar/super-saver-inactive.svg" alt="" class="right-hidden">
+            </div>
+            <div class="toggle-circle">
+                 <span class="circle-content">₹</span>
+            </div>
+        </div>
+        <!-- toggle button ends -->
+
+        <!-- location starts -->
+        <div class="location-container">
+            <button class="location-btn" id="loc-open-dialog">
+                 <div class="location-info-wrapper">
+                    <span id="9min-info"></span>
+                    <span id="fetched-display">Select Location</span>
+                </div>
+                <i class="fas fa-chevron-down" style="margin-left: 6px;" id="chev-down"></i>
+            </button>
+        </div>
+
+        <dialog id="loc-dialog">
+            <h3>Your Location</h3>
+            <button id="close-dialog">X</button>
+            <i class="fas fa-search search-icon-for-loc"></i>
+            <div id="search-box">
+                <input type="text" id="searchInput-for-loc" placeholder="Search a new adress" />
+            </div>
+            
+
+            <div id="loc-scroll">
+                  <button id="get-loc"> Use My Current Location</button>
+                <img src="assets/navbar/location_permission_off.png" alt="">
+            </div>
+        </dialog>
+
+        
+    
+
+        <!-- location ends -->
+
+        <!-- search box starts -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search products..." />
+        </div>
+        <!-- search box ends -->
+
+        <!-- login container starts -->
+        <div class="login-container" id="login-open-dialog">
+            <span class="material-symbols-outlined">account_circle</span>
+            <span>Login</span>
+        </div>
+
+        <!-- Login Dialog -->
+        <dialog id="login-dialog">
+             <div style="display: flex; width: 100%; height: 100%;background-color: white;">
+                 <div class="left-login-dialog">
+                    <img src="assets/login/logo.svg" alt="Zepto Logo" id="left-login-zepto-logo"/>
+                    <h2 class="right-heading">Groceries delivered in 10 minutes</h2>
+                    <form onsubmit="event.preventDefault(); sendOTP();">
+                        <div class="phoneno-search">
+                            <input type="text" id="phone-number" placeholder="+91 Enter Phone Number" required />
+                            <button id="contbtn"type="submit">Continue</button>
+                            <h3>By continuing, you agree to our Terms of Service & Privacy Policy</h3>
+                        </div>
+                    </form>
+                </div>
+                <div class="right-login-dialog">
+                    <img src="assets/login/get-the-app-phone.webp"class="right-phone" alt="" />
+                    <h2>Order faster & easier every time</h2>
+                    <h3>with the Zepto App</h3>
+                    <img src="assets/login/download-play-store.svg" class="play-app"alt="Play Store" />
+                    <img src="assets/login/download-app-store.svg"class="play-app" alt="App Store" />
+                </div>
+             </div>
+               
+            
+        </dialog>
+
+        <!-- OTP Verification Dialog -->
+            <dialog id="login-dialog-two">
+                <div style="display: flex; width: 100%; height: 100%;background-color: white;">
+                    <div class="left-login-dialog">
+                        <h2 id="otp-verify-text">OTP Verification</h2>
+                        <p id="result" style=" font-weight: bold;"></p>
+                        <div id="otp-and-btn-cont">
+                            <input type="text" id="otp" placeholder="Enter OTP" required />
+                        <button id="verify"onclick="verifyOTP()">Verify OTP</button>
+                        </div>
+                        
+                    </div>
+                    <div class="right-login-dialog">
+                        <img src="assets/login/get-the-app-phone.webp" class="right-phone" alt="" />
+                        <h2>Order faster & easier every time</h2>
+                        <h3>with the Zepto App</h3>
+                        <img src="assets/login/download-play-store.svg" class="play-app" alt="Play Store" />
+                        <img src="assets/login/download-app-store.svg" class="play-app"alt="App Store" />
+                    </div>
+                </div>
+            </dialog>
+        <!-- Firebase SDKs -->
+            <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+        <!-- login container ends -->
+                
+
+        <!-- cart container starts -->
+         <div class="cart-container">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span>Cart</span>
+            <span id="cart-count">0</span>
+         </div>
+        <!-- cart container ends -->
+        </div>
+
+        
+     </nav>
+      <hr>
+    <!-- header ends -->
+<script>
+   /* ---------------------------------- */
+/* 🔘 Toggle Button Logic - SuperSaver Page */
+/* ---------------------------------- */
+
+const toggle = document.getElementById("toggle-btn");
+
+// On page load, set toggle to right
+toggle.classList.add("toggled");
+
+toggle.addEventListener("click", () => {
+  toggle.classList.remove("toggled"); // Move to left
+
+  // Redirect back to index.html
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 300);
+});
+
+
+</script>
+
+<img src="assets/supersaver/257473f7-74bb-439a-915f-6c18d1545cd1.webp"style="width: 100%;" alt="">
+    
+
+  
+   
+        <section class="how-it-works">
+  <h2>How it Works</h2>
+  <div class="steps">
+    <div class="step">
+      <img src="assets/section/place-order.svg" alt="Open App" />
+      <h3>Open the app</h3>
+      <p>Choose from over 7000 products across groceries, fresh fruits & veggies, meat, pet care, beauty items & more</p>
+    </div>
+    <div class="step">
+      <img src="assets/section/do-not-blink.svg" alt="Place Order" />
+      <h3>Place an order</h3>
+      <p>Add your favourite items to the cart & avail the best offers</p>
+    </div>
+    <div class="step">
+      <img src="assets/section/enjoy.svg" alt="Free Delivery" />
+      <h3>Get free delivery</h3>
+      <p>Experience lightning-fast speed & get all your items delivered in 10 minutes</p>
+    </div>
+  </div>
+</section>
+
+
+
+      <footer class="footer">
+  <div class="footer-sections">
+    <div class="footer-column">
+      <h4>Popular Searches</h4>
+      <p><strong>Products:</strong> Avocado | Strawberry | Pomegranate | Beetroot | Ash gourd | Bottle gourd | Lady finger | Potato | Lemon | Dalchini | Fennel seeds | Blueberry | Papaya | Dragon fruit | Mushroom | Lettuce</p>
+      <p><strong>Brands:</strong> Yakult | My Muse | Aashirvaad Atta | Too Yumm | Lays | Figaro Olive Oil | Nandini Milk | Amul | Mother Dairy Near Me | Fortune Oil | Superyou | Durex Condoms | Ferns and Petals</p>
+      <p><strong>Categories:</strong> Grocery | Cigarettes | Chips | Curd | Hukka flavour | Paan shop near me | Eggs price | Cheese slice | Fresh fruits | Fresh vegetables | Refined oil | Butter price | Paneer price</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Categories</h4>
+      <ul>
+        <li>Fruits & Vegetables</li>
+        <li>Atta, Rice, Oil & Dals</li>
+        <li>Masala & Dry Fruits</li>
+        <li>Sweet Cravings</li>
+        <li>Frozen Food & Ice Creams</li>
+        <li>Baby Food</li>
+        <li>Dairy, Bread & Eggs</li>
+        <li>Cold Drinks & Juices</li>
+        <li>Munchies</li>
+        <li>Meats, Fish & Eggs</li>
+        <li>Breakfast & Sauces</li>
+        <li>Tea, Coffee & More</li>
+        <li>Biscuits</li>
+        <li>Makeup & Beauty</li>
+        <li>Bath & Body</li>
+        <li>Cleaning Essentials</li>
+        <li>Home Needs</li>
+        <li>Electricals & Accessories</li>
+        <li>Hygiene & Grooming</li>
+        <li>Health & Baby Care</li>
+        <li>Homegrown Brands</li>
+        <li>Paan Corner</li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li>Home</li>
+        <li>Delivery Areas</li>
+        <li>Careers</li>
+        <li>Customer Support</li>
+        <li>Press</li>
+        <li>Mojo - a Zepto Blog</li>
+        <li>Privacy Policy</li>
+        <li>Terms of Use</li>
+        <li>Responsible Disclosure Policy</li>
+        <li>Sell on Zepto</li>
+        <li>Deliver with Zepto</li>
+        <li>Partner with Zepto</li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Download App</h4>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png" alt="Play Store" class="store-badge">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" class="store-badge">
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© Zepto Marketplace Private Limited</p>
+  </div>
+</footer>
+
+
+<div id="cart-panel" class="cart-panel">
+  <h2>Your Cart</h2>
+    <button id="cart-close-btn">✖</button>
+  <div id="cart-items"></div>
+  <div id="cart-summary" style="padding: 10px; border-top: 1px solid #ddd;">
+  <p style="font-weight: bold;">Total: ₹<span id="cart-total">0</span></p>
+  <button id="buy-btn" style="padding: 8px 16px; background: green; color: white; border: none; cursor: pointer;">
+    Proceed to Buy
+  </button>
+</div>
+
+</div>
+
+
+ <script src="script.js"></script>
+</body>
+</html>
